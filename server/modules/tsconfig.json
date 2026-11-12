@@ -1,0 +1,16 @@
+{
+  // Nakama의 JS 런타임(goja)은 ES5 기준이라, 모든 코드를 build/index.js 한 파일로 묶어서 내보낸다.
+  "files": ["./src/main.ts"],
+  "compilerOptions": {
+    // workspaces라 패키지가 루트 node_modules에 설치되므로 둘 다 본다.
+    "typeRoots": ["./node_modules", "../../node_modules"],
+    "types": ["nakama-runtime"],
+    "outFile": "./build/index.js",
+    "target": "es5",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "removeComments": true
+  }
+}
