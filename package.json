@@ -1,0 +1,16 @@
+{
+  "name": "playhub",
+  "private": true,
+  "workspaces": [
+    "server/modules",
+    "sdk",
+    "games/*",
+    "portal"
+  ],
+  "scripts": {
+    "server:up": "docker compose -f server/docker-compose.yml up -d",
+    "server:down": "docker compose -f server/docker-compose.yml down",
+    "server:logs": "docker compose -f server/docker-compose.yml logs -f nakama",
+    "server:ps": "docker compose -f server/docker-compose.yml ps"
+  }
+}
