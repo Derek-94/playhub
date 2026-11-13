@@ -1,5 +1,6 @@
 // 게임/포털과 똑같이 패키지 이름으로 import 한다.
 import { loginGuest, submitScore, getTop } from 'playhub-sdk';
+import 'playhub-sdk/ui'; // <playhub-ranking> 태그 등록
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 const scoreInput = $<HTMLInputElement>('score');

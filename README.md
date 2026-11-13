@@ -105,6 +105,28 @@ const top = await getTop('cosmic-merge');   // [{ rank, name, score }]
 
 게스트는 브라우저별 `deviceId`(localStorage `playhub.deviceId`)로 식별한다. 다른 브라우저나 다른 포트에서는 다른 게스트가 된다.
 
+SDK는 두 층이고, 필요한 것만 import한다. 안 쓰는 층은 번들에 들어가지 않는다.
+
+| import | 내용 |
+|---|---|
+| `playhub-sdk` | 데이터 층: `loginGuest`, `getCurrentPlayer`, `submitScore`, `getTop` |
+| `playhub-sdk/ui` | UI 층(선택): `<playhub-ranking>` Web Component |
+
+```ts
+import 'playhub-sdk/ui'; // 태그 등록
+```
+
+```html
+<playhub-ranking game-id="cosmic-merge" limit="5" heading="랭킹"></playhub-ranking>
+```
+
+- Shadow DOM이라 게임 CSS와 섞이지 않는다.
+- 로그인되거나 같은 게임 점수가 `submitScore()`로 제출되면 스스로 새로고침한다. 직접 `el.refresh()`를 불러도 된다.
+- 내 기록 줄은 강조된다.
+- 색·글꼴은 CSS 변수로 바꾼다: `--playhub-bg`, `--playhub-fg`, `--playhub-muted`, `--playhub-accent`, `--playhub-accent-fg`, `--playhub-line`, `--playhub-font`, `--playhub-radius`.
+
+예시는 SDK playground(`npm run dev -w sdk`)에서 볼 수 있다.
+
 ## 게임 추가하기
 
 1. `games/<게임-id>/`에 Vite 프로젝트를 만든다. `vite.config.ts`에 `base: './'`를 넣고, `package.json`에 `"playhub-sdk": "*"` 의존성을 추가한다.

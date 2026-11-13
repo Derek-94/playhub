@@ -13,6 +13,9 @@
     th, td { border-bottom: 1px solid #ddd; padding: 6px; text-align: left; }
     #me { color: #555; font-size: 14px; }
     #me b { color: #111; }
+    .hint { color: #666; font-size: 13px; }
+    .ui-demo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    playhub-ranking.dark { --playhub-bg: #191637; --playhub-fg: #eee; --playhub-muted: #a9a4d9; --playhub-accent: #8b7bff; --playhub-line: rgba(255,255,255,.12); }
     #log { background: #111; color: #9f9; font: 12px/1.5 ui-monospace, monospace; padding: 10px; height: 180px; overflow: auto; white-space: pre-wrap; }
   </style>
 </head>
@@ -23,7 +26,7 @@
   <div class="row"><button id="login">1. loginGuest()</button> <span id="me">로그인 전</span></div>
   <div class="row">
     <button id="submit">2. submitScore()</button>
-    <label>gameId <input id="gameId" value="game-2048"></label>
+    <label>gameId <input id="gameId" value="cosmic-merge"></label>
     <label>score <input id="score" type="number"></label>
   </div>
   <div class="row"><button id="top">3. getTop()</button></div>
@@ -32,6 +35,13 @@
     <thead><tr><th>순위</th><th>이름</th><th>점수</th></tr></thead>
     <tbody id="rank"></tbody>
   </table>
+
+  <h3>UI 층: &lt;playhub-ranking&gt;</h3>
+  <p class="hint">import 'playhub-sdk/ui' 만 하면 쓸 수 있는 태그예요. 로그인·점수 제출 때 스스로 새로고침해요. 오른쪽은 CSS 변수로 색만 바꾼 것.</p>
+  <div class="ui-demo">
+    <playhub-ranking game-id="cosmic-merge" limit="5"></playhub-ranking>
+    <playhub-ranking class="dark" game-id="cosmic-merge" limit="5" heading="우주 랭킹"></playhub-ranking>
+  </div>
 
   <h3>로그</h3>
   <div id="log"></div>

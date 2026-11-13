@@ -16,6 +16,10 @@ export function setSession(next: Session) {
   session = next;
 }
 
+export function getSession(): Session | null {
+  return session;
+}
+
 export function requireSession(): Session {
   if (!session) {
     throw new Error('[playhub-sdk] 로그인이 필요해요. loginGuest()를 먼저 호출하세요.');
