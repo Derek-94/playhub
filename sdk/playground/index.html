@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>playhub-sdk playground</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 16px; }
+    .row { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
+    button { padding: 8px 14px; cursor: pointer; }
+    input { padding: 7px; width: 100px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 8px; }
+    th, td { border-bottom: 1px solid #ddd; padding: 6px; text-align: left; }
+    #me { color: #555; font-size: 14px; }
+    #me b { color: #111; }
+    #log { background: #111; color: #9f9; font: 12px/1.5 ui-monospace, monospace; padding: 10px; height: 180px; overflow: auto; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>playhub-sdk playground</h1>
+  <p>SDK 함수를 하나씩 눌러서 Nakama와 통신하는지 확인하는 테스트 페이지예요.</p>
+
+  <div class="row"><button id="login">1. loginGuest()</button> <span id="me">로그인 전</span></div>
+  <div class="row">
+    <button id="submit">2. submitScore()</button>
+    <label>gameId <input id="gameId" value="game-2048"></label>
+    <label>score <input id="score" type="number"></label>
+  </div>
+  <div class="row"><button id="top">3. getTop()</button></div>
+
+  <table>
+    <thead><tr><th>순위</th><th>이름</th><th>점수</th></tr></thead>
+    <tbody id="rank"></tbody>
+  </table>
+
+  <h3>로그</h3>
+  <div id="log"></div>
+
+  <script type="module" src="./main.ts"></script>
+</body>
+</html>

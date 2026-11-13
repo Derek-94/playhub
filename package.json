@@ -1,12 +1,18 @@
 {
   "name": "playhub",
   "private": true,
+  "engines": {
+    "node": ">=20.19"
+  },
   "workspaces": [
     "server/modules",
     "sdk",
     "games/*",
     "portal"
   ],
+  "scarfSettings": {
+    "enabled": false
+  },
   "scripts": {
     "server:up": "docker compose -f server/docker-compose.yml up -d",
     "server:restart": "docker compose -f server/docker-compose.yml restart nakama",

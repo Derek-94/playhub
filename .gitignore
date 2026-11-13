@@ -3,3 +3,5 @@ dist/
 build/
 .DS_Store
 *.log
+# 개인 PC 경로가 들어가는 로컬 실행 설정
+.claude/launch.json
