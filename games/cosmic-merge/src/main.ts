@@ -1,4 +1,5 @@
 import { loginGuest, submitScore } from 'playhub-sdk';
+import 'playhub-sdk/ui'; // <playhub-ranking>: 점수 제출되면 스스로 새로고침
 import { SIZE, canMove, emptyBoard, move, spawn, type Board, type Dir } from './game';
 
 // 서버 모듈(server/modules/src/main.ts)의 리더보드 ID와 같아야 한다.
