@@ -1,4 +1,8 @@
+import { loginGuest, submitScore } from 'playhub-sdk';
 import { SIZE, canMove, emptyBoard, move, spawn, type Board, type Dir } from './game';
+
+// 서버 모듈(server/modules/src/main.ts)의 리더보드 ID와 같아야 한다.
+const GAME_ID = 'cosmic-merge';
 
 // 단계별 천체. 합칠수록 아래로 진화한다.
 const BODIES = [
@@ -71,11 +75,41 @@ function step(dir: Dir) {
   if (!canMove(board)) endGame();
 }
 
-function endGame() {
+// 로그인은 게임 시작과 동시에 백그라운드로. 실패해도 게임은 그대로 할 수 있다.
+const login = loginGuest()
+  .then((me) => {
+    $('player').textContent = `게스트 ${me.username}`;
+    return true;
+  })
+  .catch(() => {
+    $('player').textContent = '오프라인 (랭킹 미등록)';
+    return false;
+  });
+
+async function endGame() {
   over = true;
-  $('final').textContent = String(score);
+  const finalScore = score;
+  $('final').textContent = String(finalScore);
   $('over').hidden = false;
-  // TODO(SDK 연동 단계): 여기서 submitScore()를 호출한다.
+
+  const status = $('submit-status');
+  if (finalScore === 0) {
+    status.textContent = '';
+    return;
+  }
+  status.textContent = '랭킹에 등록하는 중...';
+  if (!(await login)) {
+    status.textContent = '서버에 연결되지 않아 랭킹에 등록하지 못했어요';
+    return;
+  }
+  try {
+    await submitScore(GAME_ID, finalScore);
+    status.textContent = '랭킹에 등록했어요';
+    // 포털(부모 창)에 알려서 랭킹을 새로고침하게 한다. 단독 실행이면 parent === window라 무해하다.
+    window.parent.postMessage({ type: 'playhub:score-submitted', gameId: GAME_ID, score: finalScore }, '*');
+  } catch {
+    status.textContent = '랭킹 등록에 실패했어요';
+  }
 }
 
 // 키보드
