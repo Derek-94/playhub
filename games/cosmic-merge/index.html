@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>코스믹 머지</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <div>
+        <h1>코스믹 머지</h1>
+        <p class="sub">같은 천체를 합쳐 우주를 키워요</p>
+      </div>
+      <div class="scores">
+        <div class="box"><span>점수</span><b id="score">0</b></div>
+        <div class="box"><span>최고</span><b id="best">0</b></div>
+      </div>
+    </header>
+
+    <div class="board-wrap">
+      <div id="board" class="board"></div>
+      <div id="over" class="over" hidden>
+        <p class="over-title">더 이상 움직일 수 없어요</p>
+        <p class="over-score">최종 점수 <b id="final">0</b></p>
+        <button id="retry">다시 하기</button>
+      </div>
+    </div>
+
+    <footer class="help">
+      <span>방향키 / WASD / 스와이프로 이동</span>
+      <button id="restart" class="ghost">새 게임</button>
+    </footer>
+    <ol id="legend" class="legend"></ol>
+  </main>
+  <script type="module" src="./src/main.ts"></script>
+</body>
+</html>
