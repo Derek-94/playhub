@@ -14,9 +14,11 @@
     "enabled": false
   },
   "scripts": {
+    "dev": "npm run build:games && npm run dev -w portal",
+    "build:games": "node scripts/build-games.mjs",
     "server:up": "docker compose -f server/docker-compose.yml up -d",
     "server:restart": "docker compose -f server/docker-compose.yml restart nakama",
-    "server:down":"docker compose -f server/docker-compose.yml down",
+    "server:down": "docker compose -f server/docker-compose.yml down",
     "server:logs": "docker compose -f server/docker-compose.yml logs -f nakama",
     "server:ps": "docker compose -f server/docker-compose.yml ps"
   }

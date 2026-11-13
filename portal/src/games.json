@@ -1,0 +1,11 @@
+[
+  {
+    "id": "cosmic-merge",
+    "title": "코스믹 머지",
+    "genre": "퍼즐",
+    "summary": "같은 천체 두 개를 밀어 붙이면 한 단계 큰 천체가 돼요. 별가루에서 시작해 블랙홀까지.",
+    "controls": "방향키 · WASD · 스와이프",
+    "path": "/games/cosmic-merge/index.html",
+    "cover": "cosmic"
+  }
+]

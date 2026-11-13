@@ -1,0 +1,158 @@
+/* PlayHub — 종이 질감의 오프화이트 + 잉크 블랙 + 신호 주황 한 가지 */
+:root {
+  --paper: #f3efe6;
+  --paper-2: #e9e3d6;
+  --ink: #16140f;
+  --ink-2: #5c574c;
+  --line: #16140f;
+  --accent: #ff4a1c;
+  --accent-ink: #fff;
+  --font: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', system-ui, sans-serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, p { margin: 0; }
+
+.mono { font-family: var(--mono); font-size: 0.86em; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.muted { color: var(--ink-2); }
+.warn { color: var(--accent); }
+
+.shell { max-width: 1120px; margin: 0 auto; padding: 0 24px; min-height: 100vh; display: flex; flex-direction: column; }
+
+/* ── 상단 ─────────────────────────── */
+.masthead {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 0;
+  border-bottom: 2px solid var(--line);
+}
+.wordmark { font-weight: 900; font-size: 22px; letter-spacing: -0.04em; }
+.wordmark span { color: var(--accent); }
+.who { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.tag {
+  font: 700 10px/1 var(--mono); letter-spacing: 0.08em;
+  padding: 4px 6px; border: 1.5px solid var(--ink); border-radius: 3px;
+}
+
+.colophon {
+  margin-top: auto; padding: 18px 0 28px;
+  display: flex; justify-content: space-between;
+  border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-2);
+}
+
+/* ── 홈 ───────────────────────────── */
+.home { padding: 56px 0 72px; }
+.intro { margin-bottom: 64px; max-width: 720px; }
+.kicker { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 14px; }
+.intro h1 { font-size: clamp(44px, 8vw, 88px); line-height: 1.02; font-weight: 900; letter-spacing: -0.05em; }
+.lede { margin-top: 20px; font-size: 17px; color: var(--ink-2); }
+
+.section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 20px;
+}
+.section-head h2 { font-size: 15px; font-weight: 800; }
+
+.shelf {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;
+}
+.card {
+  display: block; height: 100%;
+  background: #fff; border: 2px solid var(--line); border-radius: 6px; overflow: hidden;
+  box-shadow: 5px 5px 0 var(--ink);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.card:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
+.card:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--ink); }
+.card-body { padding: 16px 18px 18px; border-top: 2px solid var(--line); }
+.card-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-2); }
+.card h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; margin: 4px 0 6px; }
+.card p { font-size: 14px; color: var(--ink-2); }
+.cta { display: inline-block; margin-top: 14px; font-weight: 700; font-size: 14px; border-bottom: 2px solid var(--accent); }
+
+.slot {
+  min-height: 300px; border: 2px dashed #b9b2a2; border-radius: 6px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  color: #a39b89; font-size: 14px;
+}
+
+/* 썸네일 (CSS 그림) */
+.cover { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+.orb { position: absolute; border-radius: 50%; }
+.cover-cosmic { background: #191637; color: #f3efe6; }
+.cover-cosmic .orb.a { width: 46%; aspect-ratio: 1; right: -6%; top: -18%; background: var(--accent); }
+.cover-cosmic .orb.b { width: 15%; aspect-ratio: 1; right: 42%; top: 22%; background: #f3efe6; }
+.cover-cosmic .orb.c { width: 6%; aspect-ratio: 1; right: 30%; top: 62%; background: #8f86ff; }
+
+/* ── 플레이 ───────────────────────── */
+.play { padding: 20px 0 48px; }
+.play-bar {
+  display: flex; align-items: baseline; gap: 16px;
+  padding-bottom: 14px; margin-bottom: 20px; border-bottom: 1px solid var(--line);
+}
+.play-bar h1 { font-size: 24px; font-weight: 900; letter-spacing: -0.04em; }
+.controls { margin-left: auto; }
+.back { font-weight: 700; font-size: 14px; }
+.back:hover { color: var(--accent); }
+
+.play-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; align-items: start; }
+.stage {
+  background: #0d0b24; border: 2px solid var(--line); border-radius: 6px; overflow: hidden;
+  box-shadow: 5px 5px 0 var(--ink);
+}
+.stage iframe { display: block; width: 100%; height: 660px; border: 0; }
+
+.board { border: 2px solid var(--line); border-radius: 6px; background: #fff; transition: background 300ms; }
+.board.flash { background: #fff1ea; }
+.board-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 16px; border-bottom: 2px solid var(--line);
+}
+.board-head h2 { font-size: 15px; font-weight: 800; }
+button.link {
+  font: 600 12px var(--font); color: var(--ink-2); background: none; border: 0; padding: 0; cursor: pointer;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+button.link:hover { color: var(--accent); }
+.board-note { padding: 28px 16px; font-size: 14px; color: var(--ink-2); }
+
+.rows { list-style: none; margin: 0; padding: 0; }
+.rows li {
+  display: grid; grid-template-columns: 32px 1fr auto; align-items: center; gap: 8px;
+  padding: 10px 16px; border-bottom: 1px solid var(--paper-2);
+}
+.rows li:nth-child(-n + 3) .rank { color: var(--accent); font-weight: 800; }
+.rows .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.rows .name em {
+  font: 700 10px/1 var(--font); font-style: normal; margin-left: 6px;
+  padding: 3px 5px; border-radius: 3px; background: var(--ink); color: var(--paper); vertical-align: 2px;
+}
+.rows .score { font-weight: 700; }
+.rows li.me { background: var(--accent); color: var(--accent-ink); }
+.rows li.me .rank { color: var(--accent-ink); }
+.rows li.me .name em { background: var(--accent-ink); color: var(--accent); }
+.board-foot { padding: 10px 16px; font-size: 11px; }
+
+.play-missing { padding: 80px 0; display: grid; gap: 12px; justify-items: start; }
+
+@media (max-width: 860px) {
+  .play-grid { grid-template-columns: 1fr; }
+  .stage iframe { height: 640px; }
+  .controls { display: none; }
+}
+@media (max-width: 480px) {
+  .shell { padding: 0 16px; }
+  .home { padding-top: 36px; }
+  .intro { margin-bottom: 40px; }
+}

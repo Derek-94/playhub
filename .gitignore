@@ -5,3 +5,5 @@ build/
 *.log
 # 개인 PC 경로가 들어가는 로컬 실행 설정
 .claude/launch.json
+# 게임 빌드 결과물 (npm run build:games 로 생성)
+portal/public/games/
