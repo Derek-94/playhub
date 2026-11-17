@@ -1,0 +1,107 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, -apple-system, sans-serif;
+  color: #4a3428;
+  background: #f4ead8;
+  display: flex;
+  justify-content: center;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.app { width: min(1000px, 100%); padding: 16px 16px 24px; }
+
+.stage { position: relative; border-radius: 18px; overflow: hidden; border: 3px solid #4a3428; background: #a9d8ea; }
+canvas { display: block; width: 100%; aspect-ratio: 1000 / 560; touch-action: none; cursor: crosshair; }
+
+/* 아래 막대: 힘 게이지 + 아이템 칸 */
+.bar { display: flex; align-items: center; gap: 16px; margin-top: 12px; flex-wrap: wrap; }
+.power { display: flex; align-items: center; gap: 10px; flex: 1 1 260px; }
+.label { font-weight: 800; font-size: 15px; }
+.gauge-wrap { position: relative; flex: 1; }
+.gauge-last-label {
+  position: absolute; top: calc(100% + 2px); transform: translateX(-50%);
+  font-size: 11px; font-weight: 700; color: #7a6352; white-space: nowrap; display: none;
+}
+.gauge {
+  position: relative; height: 22px; border-radius: 11px;
+  border: 3px solid #4a3428; background: #fffaf1; overflow: hidden;
+}
+.gauge i {
+  position: absolute; inset: 0 auto 0 0; width: 0%;
+  background: #f2b84b;
+}
+.gauge i.hot { background: #e4574a; }
+.gauge em {
+  position: absolute; top: -2px; bottom: -2px; width: 3px; margin-left: -1px;
+  background: #4a3428; opacity: 0.55; display: none;
+}
+
+.items { display: flex; gap: 8px; }
+.item {
+  position: relative; width: 64px; height: 64px; padding: 0;
+  border: 3px solid #4a3428; border-radius: 14px; background: #fffaf1;
+  cursor: pointer; transition: transform 0.12s;
+}
+.item canvas { width: 48px; height: 48px; aspect-ratio: auto; cursor: inherit; margin: auto; }
+.item span {
+  position: absolute; left: 50%; bottom: -9px; transform: translateX(-50%);
+  white-space: nowrap; font-size: 11px; font-weight: 700;
+  background: #4a3428; color: #fffaf1; padding: 1px 6px; border-radius: 8px;
+}
+.item:hover:not(:disabled) { transform: translateY(-2px); }
+.item.on { background: #ffe39a; transform: translateY(-4px) rotate(-3deg); box-shadow: 0 4px 0 #4a3428; }
+.item:disabled { opacity: 0.4; cursor: default; }
+.item.used { visibility: hidden; }
+
+.sound {
+  font: inherit; font-weight: 700; font-size: 12px; padding: 6px 10px;
+  border: 2px solid #4a3428; border-radius: 10px; background: #fffaf1; color: #4a3428; cursor: pointer;
+}
+.sound[aria-pressed="false"] { opacity: 0.6; }
+
+.hint { margin: 16px 0 0; text-align: center; font-size: 14px; color: #7a6352; min-height: 1.2em; }
+
+/* 메뉴·결과 카드 */
+.overlay {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: rgba(74, 52, 40, 0.35); padding: 16px;
+}
+.overlay[hidden] { display: none; }
+.card {
+  width: min(460px, 100%); max-height: 100%; overflow: auto;
+  background: #fffaf1; border: 3px solid #4a3428; border-radius: 20px;
+  padding: 22px 24px; text-align: center; box-shadow: 0 6px 0 #4a3428;
+}
+h1 { margin: 0 0 8px; font-size: 30px; letter-spacing: -1px; }
+.lead { margin: 0 0 12px; font-size: 14px; line-height: 1.55; }
+.how { list-style: none; margin: 0 0 14px; padding: 10px 12px; background: #f4ead8; border-radius: 12px; text-align: left; font-size: 13px; line-height: 1.8; }
+.how b { display: inline-block; min-width: 46px; }
+.pick { margin: 0 0 8px; font-weight: 700; font-size: 14px; }
+.levels { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.levels button {
+  font: inherit; font-weight: 800; font-size: 15px; padding: 10px 18px; min-width: 92px;
+  border: 3px solid #4a3428; border-radius: 12px; background: #fffaf1; color: #4a3428; cursor: pointer;
+  box-shadow: 0 3px 0 #4a3428; transition: transform 0.08s, box-shadow 0.08s;
+}
+.levels button.primary { background: #f2b84b; }
+.levels button:active { transform: translateY(3px); box-shadow: 0 0 0 #4a3428; }
+
+.result-title { margin: 0; font-size: 30px; font-weight: 900; }
+.result-sub { margin: 6px 0 14px; font-size: 14px; color: #7a6352; }
+.hp-summary { display: flex; gap: 10px; justify-content: center; margin-bottom: 16px; }
+.hp-summary div { min-width: 96px; padding: 8px 12px; border-radius: 12px; background: #f4ead8; }
+.hp-summary span { display: block; font-size: 12px; }
+.hp-summary b { font-size: 24px; }
+
+@media (max-width: 640px) {
+  .app { padding: 8px 8px 16px; }
+  .stage { border-radius: 12px; }
+  /* 세로 화면에서는 게임 화면이 낮아서 카드를 화면 전체에 띄운다 */
+  .overlay { position: fixed; z-index: 10; }
+  .item { width: 54px; height: 54px; }
+  .item canvas { width: 40px; height: 40px; }
+  h1 { font-size: 24px; }
+  .card { padding: 14px 16px; }
+  .how { font-size: 12px; line-height: 1.6; }
+}

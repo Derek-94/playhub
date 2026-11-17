@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>멍타리 대전</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+  <main class="app">
+    <div class="stage">
+      <canvas id="game" aria-label="멍타리 대전 게임 화면"></canvas>
+
+      <div id="menu" class="overlay">
+        <div class="card">
+          <h1>멍타리 대전</h1>
+          <p class="lead">울타리 너머 옆집 보리에게 뼈다귀를 던져요.<br>바람을 읽고 힘을 조절해서 먼저 HP를 0으로 만들면 이겨요.</p>
+          <ul class="how">
+            <li><b>조준</b> 마우스를 움직여요 (휴대폰은 누른 채 끌기)</li>
+            <li><b>던지기</b> 꾸욱 누르면 힘이 차고, 떼면 날아가요</li>
+            <li><b>주의</b> 게이지를 끝까지 채우면 너무 세서 맵 밖으로!</li>
+            <li><b>아이템</b> 던지기 전에 아래 칸을 눌러 장착 (한 턴에 1개)</li>
+          </ul>
+          <p class="pick">보리의 실력을 골라 주세요</p>
+          <div class="levels">
+            <button data-level="easy">쉬움</button>
+            <button data-level="normal" class="primary">보통</button>
+            <button data-level="hard">어려움</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="result" class="overlay" hidden>
+        <div class="card">
+          <p id="result-title" class="result-title"></p>
+          <p id="result-sub" class="result-sub"></p>
+          <div class="hp-summary">
+            <div><span>콩이</span><b id="result-left">0</b></div>
+            <div><span>보리</span><b id="result-right">0</b></div>
+          </div>
+          <div class="levels">
+            <button id="again" class="primary">다시 하기</button>
+            <button id="to-menu">난이도 바꾸기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bar">
+      <div class="power">
+        <span class="label">힘</span>
+        <div class="gauge-wrap">
+          <div class="gauge"><i id="gauge-fill"></i><em id="gauge-last" title="지난번에 던진 힘"></em></div>
+          <small id="gauge-last-label" class="gauge-last-label">지난번</small>
+        </div>
+      </div>
+      <div id="items" class="items" aria-label="아이템 칸"></div>
+      <button id="sound" class="sound" type="button">소리 켜짐</button>
+    </footer>
+    <p id="hint" class="hint">꾸욱 눌러서 힘을 모으고, 떼면 던져요</p>
+  </main>
+  <script type="module" src="./src/main.ts"></script>
+</body>
+</html>

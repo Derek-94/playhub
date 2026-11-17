@@ -1,0 +1,14 @@
+{
+  "name": "mungtari",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5182",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "vite": "8.3.5"
+  }
+}
