@@ -704,6 +704,15 @@ soundBtn.addEventListener('click', () => {
 });
 paintSound();
 
+// 포털(iframe) 안에서 돌 때: 내 화면 높이를 포털에 알려서 iframe 높이를 딱 맞게 한다 (아래 빈 여백 없애기)
+if (window.parent !== window) {
+  const app = document.querySelector<HTMLElement>('.app')!;
+  const post = () =>
+    window.parent.postMessage({ type: 'playhub:resize', height: app.getBoundingClientRect().height }, location.origin);
+  new ResizeObserver(post).observe(app);
+  post();
+}
+
 preloadImages(() => renderItems()); // 아이템 아이콘은 그림이 다 오면 다시 그린다
 renderItems();
 requestAnimationFrame(frame);

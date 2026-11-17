@@ -131,5 +131,5 @@ import 'playhub-sdk/ui'; // 태그 등록
 
 1. `games/<게임-id>/`에 Vite 프로젝트를 만든다. `vite.config.ts`에 `base: './'`를 넣고, `package.json`에 `"playhub-sdk": "*"` 의존성을 추가한다.
 2. `server/modules/src/main.ts`의 `LEADERBOARD_IDS`에 `<게임-id>`를 추가한다.
-3. `portal/src/games.json`에 게임 정보를 한 줄 추가한다. `id`는 리더보드 ID와 같아야 한다. 썸네일(`cover`)은 `portal/src/styles.css`의 `.cover-<cover>`로 그린다.
+3. `portal/src/games.json`에 게임 정보를 한 줄 추가한다. `id`는 리더보드 ID와 같아야 한다. 썸네일(`cover`)은 `portal/src/styles.css`의 `.cover-<cover>`로 그린다. 가로 화면 게임이면 `"orientation": "landscape"`를 넣는다 (게임을 넓게 펼치고 랭킹을 아래로 내림). 게임이 `{ type: 'playhub:resize', height }` 메시지로 자기 높이를 알려 주면 iframe 높이가 거기에 맞춰진다.
 4. `npm install` → 서버 모듈 빌드 + 재시작 → `npm run dev`.

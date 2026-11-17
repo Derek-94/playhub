@@ -94,6 +94,10 @@ h1, h2, h3, p { margin: 0; }
 .cover-cosmic .orb.a { width: 46%; aspect-ratio: 1; right: -6%; top: -18%; background: var(--accent); }
 .cover-cosmic .orb.b { width: 15%; aspect-ratio: 1; right: 42%; top: 22%; background: #f3efe6; }
 .cover-cosmic .orb.c { width: 6%; aspect-ratio: 1; right: 30%; top: 62%; background: #8f86ff; }
+.cover-mungtari { background: linear-gradient(#8fd0f2 0 64%, #93c46e 64%); }
+.cover-mungtari .orb.a { width: 16%; aspect-ratio: 1; right: 10%; top: 10%; background: #fff3c4; }
+.cover-mungtari .orb.b { width: 90%; height: 60%; left: -25%; top: 48%; background: #b1d39b; }
+.cover-mungtari .orb.c { width: 80%; height: 55%; right: -30%; top: 54%; background: #a3cb88; }
 
 /* ── 플레이 ───────────────────────── */
 .play { padding: 20px 0 48px; }
@@ -112,6 +116,10 @@ h1, h2, h3, p { margin: 0; }
   box-shadow: 5px 5px 0 var(--ink);
 }
 .stage iframe { display: block; width: 100%; height: 660px; border: 0; }
+/* 가로 게임: 게임을 한 줄 전체로 넓히고 랭킹은 아래로 */
+.play-grid.landscape { grid-template-columns: minmax(0, 1fr); }
+.play-grid.landscape .stage { background: transparent; }
+.play-grid.landscape .stage iframe { height: auto; aspect-ratio: 16 / 11; }
 
 .board { border: 2px solid var(--line); border-radius: 6px; background: #fff; transition: background 300ms; }
 .board.flash { background: #fff1ea; }

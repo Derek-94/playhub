@@ -10,8 +10,10 @@ export interface Game {
   controls: string;
   path: string;
   cover: string;
+  // 게임 화면 방향. landscape(가로)면 플레이 화면에서 게임을 넓게 펼치고 랭킹을 아래로 내린다.
+  orientation?: 'portrait' | 'landscape';
 }
 
-export const GAMES: Game[] = list;
+export const GAMES = list as Game[];
 
 export const findGame = (id: string | undefined) => GAMES.find((g) => g.id === id);

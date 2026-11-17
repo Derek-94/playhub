@@ -6,6 +6,17 @@
     "summary": "같은 천체 두 개를 밀어 붙이면 한 단계 큰 천체가 돼요. 별가루에서 시작해 블랙홀까지.",
     "controls": "방향키 · WASD · 스와이프",
     "path": "/games/cosmic-merge/index.html",
-    "cover": "cosmic"
+    "cover": "cosmic",
+    "orientation": "portrait"
+  },
+  {
+    "id": "mungtari",
+    "title": "멍타리 대전",
+    "genre": "턴제 대전",
+    "summary": "울타리 너머 옆집 강아지에게 뼈다귀를 던져요. 바람을 읽고 힘을 조절해서 먼저 HP를 0으로 만들면 승리.",
+    "controls": "마우스 조준 · 꾹 눌러 힘 모으기 · 떼면 던지기",
+    "path": "/games/mungtari/index.html",
+    "cover": "mungtari",
+    "orientation": "landscape"
   }
 ]
